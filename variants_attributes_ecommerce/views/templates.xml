@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <template id="variants_attributes_ecommerce.ecom_show_extra_fields_product_variant2" name="Test template">
+            <t t-if="any([product_variant[field.name] for field in website.shop_extra_variants_field_ids])">
+                <hr/>
+                <p class="text-muted">
+                    <t t-foreach='website.shop_extra_variants_field_ids' t-as='field' t-if='product_variant[field.name]'>
+                        <b><t t-esc='field.label'/>: </b>
+                        <t t-if='field.field_id.ttype != "binary"'>
+                            <span t-esc='product_variant[field.name]' t-options="{'widget': field.field_id.ttype}"/>
+                        </t>
+                        <t t-else=''>
+                            <a target='_blank' t-attf-href='/web/content/product.template/#{product.id}/#{field.name}?download=1'>
+                                <i class='fa fa-file'></i>
+                            </a>
+                        </t>
+                        <br/>
+                    </t>
+                </p>
+            </t>
+            <div class="custom_var_att">
+                <div t-if="product_variant" t-out="product_variant.add_info_test"/>
+            <div t-if="product_variant" t-out="product_variant.image_128" t-options="{'widget': 'image', 'class': 'rounded o_image_64_max'}" />
+            </div>         
+    </template>
+
+    <template id="ecom_show_extra_fields_product_variant_call_template" inherit_id="website_sale.product" active="True" name="Show Extra Fields product variant">
+        <xpath expr="//div[@id='product_details']" position="inside">
+            <t t-call="variants_attributes_ecommerce.ecom_show_extra_fields_product_variant2"/>
+        </xpath>
+    </template>
+
+</odoo>

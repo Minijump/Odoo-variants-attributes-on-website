@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+variants_attributes_ecommerce.access_website_sale_extra_field_product_variant,access_website_sale_extra_field_product_variant,variants_attributes_ecommerce.model_website_sale_extra_field_product_variant,base.group_user,1,1,1,1
