@@ -19,7 +19,6 @@
         </t>  
     </template>
 
-    <!-- TEST TRANSLATION -->
     <template id="ecom_show_extra_fields_product_variant_call_template" inherit_id="website_sale.product" active="True" name="Show Extra Fields product variant">
         <xpath expr="//div[@id='product_details']" position="inside">
             <t t-call="variants_attributes_ecommerce.ecom_show_extra_fields_product_variant"/>
