@@ -4,11 +4,12 @@
     'version': '17.0.1.0.0',
     "depends": [
         "sale",
-        "website_sale_product_configurator",
-    ], #Check depends correctly
+        "website_sale",
+    ],
     "data": [
-        "views/templates.xml",
         'security/ir.model.access.csv',
+        "views/templates.xml",
+        "views/website_views.xml",
     ],
     'assets': {
         'web.assets_frontend': [

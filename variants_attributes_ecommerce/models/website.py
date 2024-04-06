@@ -3,6 +3,7 @@ from odoo import api, fields, models, tools, SUPERUSER_ID, _
 
 class WebsiteSaleExtraField(models.Model):
     _name = 'website.sale.extra.field.product.variant'
+    _description = 'Enable to add variants specific fields on website'
 
     website_id = fields.Many2one('website')
     sequence = fields.Integer(default=10)
@@ -13,15 +14,8 @@ class WebsiteSaleExtraField(models.Model):
         ondelete='cascade'
     )
     label = fields.Char(related='field_id.field_description')
-    name = fields.Char(related='field_id.name')
+    name = fields.Char(related='field_id.name')   
 
-
-class PoductProduct(models.Model):
-    _inherit = 'product.product'
-
-    add_info_test = fields.Html()
-    test_char_field = fields.Char() #because extra fields only take into account chars and binary
-    
 
 class Website(models.Model):
     _inherit = 'website'
