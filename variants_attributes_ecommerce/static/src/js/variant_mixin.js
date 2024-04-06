@@ -1,23 +1,25 @@
 /** @odoo-module **/
 
 import VariantMixin from "@website_sale/js/variant_mixin";
-import { patch } from "@web/core/utils/patch";
+import publicWidget from "@web/legacy/js/public/public_widget";
 
-patch(VariantMixin, "variantMixinPatchVariantsAttributes", {
-    _onChangeCombination: function(ev, $parent, combination) {
-        this._super(ev, $parent, combination);
-        console.log("hey");
-        console.log(document);
-        // document.getElementsByClassName("custom_var_att")[0].innerHTML = combination.carousel_variants_attr 
-    }
-    
+/**
+ * @param {MouseEvent} ev
+ * @param {$.Element} $parent
+ * @param {Array} combination
+ */
+VariantMixin._onChangeCombinationVariantsAttributes = function (ev, $parent, combination) {
+    document.getElementsByClassName("custom_var_att")[0].innerHTML = combination.carousel_variants_attr
+};
+
+publicWidget.registry.WebsiteSale.include({
+    /**
+     * @override
+     */
+    _onChangeCombination: function () {
+        this._super.apply(this, arguments);
+        VariantMixin._onChangeCombinationVariantsAttributes.apply(this, arguments);
+    },
 });
 
-// const OriginalOnchangeCombination = VariantMixin._onChangeCombination;
-// VariantMixin._onChangeCombination = function (ev, $parent, combination) {
-//     this._super(ev, $parent, combination);
-//     console.log("hey");
-//     console.log(document);
-//     document.getElementsByClassName("custom_var_att")[0].innerHTML = combination.carousel_variants_attr
-//     OriginalOnchangeCombination.apply(this, [ev, $parent, combination]);
-// };
+export default VariantMixin;
