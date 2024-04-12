@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <template id="variants_attributes_ecommerce.ecom_show_extra_fields_product_variant" name="Variants attributes">
+        <t t-if="any([product_variant[field.name] for field in website.shop_extra_variants_field_ids])">
+            <p class="text-muted custom_var_att">
+                <t t-foreach='website.shop_extra_variants_field_ids' t-as='field' t-if='product_variant[field.name]'>
+                    <b><t t-esc='field.label'/>: </b>
+                    <t t-if='field.field_id.ttype != "binary"'>
+                        <span t-esc='product_variant[field.name]' t-options="{'widget': field.field_id.ttype}"/>
+                    </t>
+                    <t t-else=''>
+                        <a target='_blank' t-attf-href='/web/content/product.template/#{product.id}/#{field.name}?download=1'>
+                            <i class='fa fa-file'></i>
+                        </a>
+                    </t>
+                    <br/>
+                </t>
+            </p>
+        </t>  
+    </template>
+
+    <template id="ecom_show_extra_fields_product_variant_call_template" inherit_id="website_sale.product" active="True" name="Show Extra Fields product variant">
+        <xpath expr="//div[@id='product_details']" position="inside">
+            <t t-call="variants_attributes_ecommerce.ecom_show_extra_fields_product_variant"/>
+        </xpath>
+    </template>
+
+</odoo>
