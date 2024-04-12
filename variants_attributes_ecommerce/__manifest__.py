@@ -22,7 +22,7 @@
     "author": "Minijump",
     "category": "website",
     "description": """On website, display variants' specific attributes""",
-    'price': '7.95',
-    #'images': ['./static/description/banner.png'],
+    'price': '6.95',
+    'images': ['./static/description/banner.png'],
     'support': 'ecuyer.duchevalier@gmail.com'
 }
